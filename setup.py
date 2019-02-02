@@ -31,15 +31,15 @@ if sys.argv[-1] == 'tag':
     os.system("git push --tags")
     sys.exit()
 
-README = open(os.path.join(os.path.dirname(__file__), 'README.rst')).read()
-CHANGELOG = open(os.path.join(os.path.dirname(__file__), 'CHANGELOG.rst')).read()
+# README = open(os.path.join(os.path.dirname(__file__), 'README.rst')).read()
+# CHANGELOG = open(os.path.join(os.path.dirname(__file__), 'CHANGELOG.rst')).read()
 
 setup(
     name='edx-views_report',
     version=VERSION,
     description='Export views_report report for Open edX',
     long_description=README + '\n\n' + CHANGELOG,
-    author='N.V.Ignatchenko, D.S.Vesloguzov',
+    author='N.V.Ignatchenko',
     author_email='mastergowen@gmail.com',
     url='https://github.com/MasterGowen/edx_views_report.git',
     license=None,
