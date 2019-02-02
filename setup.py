@@ -3,10 +3,10 @@
 # pylint: disable=C0111,W6005,W6100
 from __future__ import absolute_import, print_function
 
-import os
-import re
 import sys
 
+import os
+import re
 from setuptools import setup
 
 
@@ -38,7 +38,7 @@ setup(
     name='edx-views_report',
     version=VERSION,
     description='Export views_report report for Open edX',
-    long_description=README + '\n\n' + CHANGELOG,
+    # long_description=README + '\n\n' + CHANGELOG,
     author='N.V.Ignatchenko',
     author_email='mastergowen@gmail.com',
     url='https://github.com/MasterGowen/edx_views_report.git',
@@ -53,7 +53,7 @@ setup(
         'Framework :: Django :: 1.10',
         'Framework :: Django :: 1.11',
         'Intended Audience :: Developers',
-        #'License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)',
+        # 'License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)',
         'Natural Language :: English',
         'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 2.7',
