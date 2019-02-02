@@ -16,8 +16,6 @@ log = logging.getLogger(__name__)
 
 
 class ViewsReportReport(object):
-    archive = ViewsReportReportStore()
-
     @classmethod
     def generate(cls, _xmodule_instance_args, _entry_id, course_id, task_input, action_name):
         start_time = time()
@@ -70,9 +68,6 @@ class ViewsReportReport(object):
                             ])
         rows.insert(0, headers)
         return rows
-
-
-        return file
 
     @classmethod
     def _get_course_json_data(cls, course_id):
