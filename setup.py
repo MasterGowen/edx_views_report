@@ -35,7 +35,7 @@ if sys.argv[-1] == 'tag':
 # CHANGELOG = open(os.path.join(os.path.dirname(__file__), 'CHANGELOG.rst')).read()
 
 setup(
-    name='edx-views_report',
+    name='edx_views_report',
     version=VERSION,
     description='Export views_report report for Open edX',
     # long_description=README + '\n\n' + CHANGELOG,
