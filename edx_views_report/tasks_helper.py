@@ -27,7 +27,7 @@ class ViewsReportReport(object):
 
         current_step = {'step': 'Calculating views report'}
         rows = cls._get_vr(course_id, enrolled_students)
-        upload_csv_to_report_store(rows, 'enrollment_report', course_id, start_date, config_name='FINANCIAL_REPORTS')
+        upload_csv_to_report_store(rows, 'enrollment_report', course_id, start_date, config_name='GRADES_DOWNLOAD')
         task_progress.update_task_state(extra_meta=current_step)
 
         return task_progress.update_task_state(extra_meta=current_step)
