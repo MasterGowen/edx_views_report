@@ -61,7 +61,7 @@ class ViewsReportReport(object):
             for subsection in vertical_map:
                 rows.append([
                     student.id,
-                    User.objects.get(student.id).email,
+                    student.email,
                     _viewed(subsection, student),
                     structure[str(subsection)]["display_name"],
                 ])
