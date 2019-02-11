@@ -10,6 +10,8 @@ from openedx.core.djangoapps.content.course_structures.models import CourseStruc
 from pytz import UTC
 from student.models import CourseEnrollment
 
+from django.contrib.auth.models import User
+
 from utils import upload_csv_to_report_store
 
 log = logging.getLogger(__name__)
@@ -34,18 +36,18 @@ class ViewsReportReport(object):
 
     @classmethod
     def _get_vr(cls, course_id, enrolled_students):
-        headers = ('user_id', 'viewed', 'subsection')
-        structure = CourseStructure.objects.get(course_id=course_id).ordered_blocks
-
+        headers = ('user_id', 'email', 'viewed', 'subsection')
         rows = []
+        structure = CourseStructure.objects.get(course_id=course_id).ordered_blocks
 
         course = get_course_by_id(course_id)
         chapters = [chapter for chapter in course.get_children() if not chapter.hide_from_toc]
-        vertical_map = {}
-        for c in chapters:
-            for s in c.get_children():
-                if not s.hide_from_toc:
-                    vertical_map[s.location] = [t.location for t in s.get_children()]
+        vertical_map = []
+
+        for chapter in chapters:
+            sequentials = chapter.children
+            for sequential in sequentials:
+                vertical_map.append(sequential)
 
         def _viewed(_subsection, _student):
             _sm = StudentModule.objects.filter(student=_student,
@@ -56,11 +58,12 @@ class ViewsReportReport(object):
             return 0
 
         for student in enrolled_students:
-            for subsection in vertical_map.keys():
+            for subsection in vertical_map:
                 rows.append([
                     student.id,
+                    User.objects.get(student.id).email,
                     _viewed(subsection, student),
-                    subsection["display_name"],
+                    structure[str(subsection)]["display_name"],
                 ])
         rows.insert(0, headers)
         return rows
