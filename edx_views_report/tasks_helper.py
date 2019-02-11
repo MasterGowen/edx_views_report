@@ -57,15 +57,11 @@ class ViewsReportReport(object):
 
         for student in enrolled_students:
             for subsection in vertical_map.keys():
-                for vertical in vertical_map[subsection]:
-                    for block in structure[str(vertical)]["children"]:
-                        if "video" in block:
-                            rows.append([
-                                student.id,
-                                # str(block).split("@")[-1],
-                                _viewed(subsection, student),
-                                str(subsection).split("@")[-1],
-                            ])
+                rows.append([
+                    student.id,
+                    _viewed(subsection, student),
+                    str(subsection).split("@")[-1],
+                ])
         rows.insert(0, headers)
         return rows
 
